@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		20332E84236B3D2B00446752 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 20332E83236B3D2B00446752 /* main.c */; };
+		20332E8C236B3D7000446752 /* libmpi.40.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 20332E8B236B3D7000446752 /* libmpi.40.dylib */; };
+		20332E8E236B4B0E00446752 /* JacksonJarboeICH.c in Sources */ = {isa = PBXBuildFile; fileRef = 20332E8D236B4B0E00446752 /* JacksonJarboeICH.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +25,8 @@
 
 /* Begin PBXFileReference section */
 		20332E80236B3D2B00446752 /* ICH */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ICH; sourceTree = BUILT_PRODUCTS_DIR; };
-		20332E83236B3D2B00446752 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		20332E8B236B3D7000446752 /* libmpi.40.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmpi.40.dylib; path = "../../../../usr/local/Cellar/open-mpi/4.0.1_2/lib/libmpi.40.dylib"; sourceTree = "<group>"; };
+		20332E8D236B4B0E00446752 /* JacksonJarboeICH.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = JacksonJarboeICH.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20332E8C236B3D7000446752 /* libmpi.40.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +46,7 @@
 			children = (
 				20332E82236B3D2B00446752 /* ICH */,
 				20332E81236B3D2B00446752 /* Products */,
+				20332E8A236B3D7000446752 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,9 +61,17 @@
 		20332E82236B3D2B00446752 /* ICH */ = {
 			isa = PBXGroup;
 			children = (
-				20332E83236B3D2B00446752 /* main.c */,
+				20332E8D236B4B0E00446752 /* JacksonJarboeICH.c */,
 			);
 			path = ICH;
+			sourceTree = "<group>";
+		};
+		20332E8A236B3D7000446752 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20332E8B236B3D7000446752 /* libmpi.40.dylib */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,7 +131,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20332E84236B3D2B00446752 /* main.c in Sources */,
+				20332E8E236B4B0E00446752 /* JacksonJarboeICH.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +188,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = /usr/local/include;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -228,6 +241,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = /usr/local/include;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -239,6 +253,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/Cellar/open-mpi/4.0.1_2/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -247,6 +265,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/Cellar/open-mpi/4.0.1_2/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
