@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		20C4DC082374B93300F109DF /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 20C4DC072374B93300F109DF /* main.c */; };
+		20828D9D23753EFF001AF42D /* pthread.c in Sources */ = {isa = PBXBuildFile; fileRef = 20C4DC0F2374CC6200F109DF /* pthread.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +24,8 @@
 
 /* Begin PBXFileReference section */
 		20C4DC042374B93300F109DF /* pthreadMatrix */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pthreadMatrix; sourceTree = BUILT_PRODUCTS_DIR; };
-		20C4DC072374B93300F109DF /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		20C4DC072374B93300F109DF /* serial.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = serial.c; sourceTree = "<group>"; };
+		20C4DC0F2374CC6200F109DF /* pthread.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pthread.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +58,8 @@
 		20C4DC062374B93300F109DF /* pthreadMatrix */ = {
 			isa = PBXGroup;
 			children = (
-				20C4DC072374B93300F109DF /* main.c */,
+				20C4DC072374B93300F109DF /* serial.c */,
+				20C4DC0F2374CC6200F109DF /* pthread.c */,
 			);
 			path = pthreadMatrix;
 			sourceTree = "<group>";
@@ -119,7 +121,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20C4DC082374B93300F109DF /* main.c in Sources */,
+				20828D9D23753EFF001AF42D /* pthread.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
