@@ -14,7 +14,7 @@
 // other 2 arrays respecitvely. This take is done in serial.
 
 // TO RUN IN STAMPEDE:
-// gcc serial.exe -o JacksonA4NoThreads.c -lpthreads
+// gcc serial.exe -o JacksonA4NoThreads.c -lpthread
 // sbatch serialScript
 // (result will show 5 times for 5 runs)
 

@@ -15,7 +15,7 @@
 // with each thread handeling one of the functions.
 
 // TO RUN IN STAMPEDE:
-// gcc pthreads.exe -o JacksonA4YesThreads.c -lpthreads
+// gcc pthreads.exe -o JacksonA4YesThreads.c -lpthread
 // sbatch pthreadsScript
 // (result will show 5 times for 5 runs)
 
