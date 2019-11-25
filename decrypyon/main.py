@@ -7,11 +7,10 @@ message = 'GUVF vf ZL FRPERG zrffntr.'
 alphaUpp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 alphaLow = "abcdefghijklmnopqrstuvwxyz"
 
-def decrypt(upper, lower):
+def decrypt(indexes):
     #try each key possible
-    for uppKey in upper:
+    for index in indexes:
         #ensure that upper and lower are on the same letter
-        index = upper.find(uppKey)
 
         decrypted = ""
         # Change every value in the string under the same key
@@ -42,32 +41,17 @@ def decrypt(upper, lower):
             else:
                 decrypted = decrypted + character
         #print final message
-        print('Key #%s: %s' % (index, decrypted))
+        print(f'Key #{index}: {decrypted}')
 
-def chunk(alphabet, size):
-    #is seeing as a float instead of an int for some reason. Will figure out later
-    #############################################################################
-    for i in range(0, len(alphabet), size):
-        yield list[i:i+size]            
+def chunkstring(string, length):
+    return (string[0+i:length+i] for i in range(0, len(string), length))          
                 
-
 d = enchant.Dict("en_US") # english dictionary to check for real words
-#decrypt(alphaUpp, alphaLow)
-a = list(chunk(alphaUpp, len(alphaUpp) / 4))
-b = list(chunk(alphaLow, len(alphaLow) / 4))
+
+a = numpy.arange(26)
+a = numpy.array_split(a, 4)
 
 print(a)
-print(b)
 
-
-# #split array into pieces
-# a = numpy.array_split(a, 64)
-
-# pool = mp.Pool(processes=4)
-# pool.map(decrypt, a, b)
-
-
-# sum = addArray(a)
-# print(f"Sum array is {summation}\n")
-# print(f"Flipped array is {flipped}\n")
-#print(f"Summation of the array is {arraySum}\n")
+pool = mp.Pool(processes=4)
+pool.map(decrypt, a)
