@@ -12,6 +12,23 @@ def createKey():
     return key
 
 def encrypt(key):
+    encrypted = ""
     for letter in context:
         if letter.isupper():
             pointer = alphaUpp.find(letter)
+            pointer = pointer + key
+            
+            if pointer > 26:
+                pointer = pointer - 26
+            
+            encrypted = encrypted + alphaUpp[pointer]
+        elif letter.islower():
+            pointer = alphaLow.find(letter)
+            pointer = pointer + key
+            
+            if pointer > 26:
+                pointer = pointer - 26
+            
+            encrypted = encrypted + alphaLow[pointer]
+        else:
+            encrypted = encrypted + letter
