@@ -3,15 +3,18 @@ import os
 import numpy
 import enchant
 
-message = 'GUVF vf ZL FRPERG zrffntr.'
+f = open("hiddenMeaning.txt", 'r')
+message = f.read()
 alphaUpp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 alphaLow = "abcdefghijklmnopqrstuvwxyz"
+d = enchant.Dict("en_US") # english dictionary to check for real words
 
 def decrypt(indexes):
-    #try each key possible
+    #try each key in thread partition
     for index in indexes:
+        #define in loop so each check gets a new bool to check if it is a real word
+        isreal = True
         #ensure that upper and lower are on the same letter
-
         decrypted = ""
         # Change every value in the string under the same key
         for character in message:
@@ -40,13 +43,17 @@ def decrypt(indexes):
             #if special character, like puncuation or space
             else:
                 decrypted = decrypted + character
+        #check first few words to see if they are real values
+        realword = decrypted.split(" ", 6)
+        for i in range(0, 4):
+            if d.check(realword[i]) == False:
+                isreal = False
         #print final message
-        print(f'Key #{index}: {decrypted}')
+        if isreal == True:
+            print(f'Key #{index}: {decrypted}')
 
 def chunkstring(string, length):
     return (string[0+i:length+i] for i in range(0, len(string), length))          
-                
-d = enchant.Dict("en_US") # english dictionary to check for real words
 
 a = numpy.arange(26)
 a = numpy.array_split(a, 4)
