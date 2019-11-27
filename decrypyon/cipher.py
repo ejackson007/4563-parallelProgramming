@@ -7,7 +7,7 @@ context = f.read()
 
 def createKey():
     print("Enter an integer for the key")
-    key = input()
+    key = int(input())
     key = key % 26
     return key
 
@@ -17,8 +17,8 @@ def encrypt(key):
         if letter.isupper():
             pointer = alphaUpp.find(letter)
             pointer = pointer + key
-            
-            if pointer > 26:
+
+            if pointer > 25: # must be 25 because of [0-25]
                 pointer = pointer - 26
             
             encrypted = encrypted + alphaUpp[pointer]
@@ -26,9 +26,14 @@ def encrypt(key):
             pointer = alphaLow.find(letter)
             pointer = pointer + key
             
-            if pointer > 26:
+            if pointer > 25:
                 pointer = pointer - 26
-            
             encrypted = encrypted + alphaLow[pointer]
         else:
             encrypted = encrypted + letter
+    o.write(encrypted)
+
+key = createKey()
+encrypt(key)
+
+print("MESSAGE SCRAMBLED!")

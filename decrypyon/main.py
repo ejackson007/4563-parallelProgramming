@@ -4,10 +4,12 @@ import numpy
 import enchant
 
 f = open("hiddenMeaning.txt", 'r')
+o = open("decoded.txt", 'w')
 message = f.read()
 alphaUpp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 alphaLow = "abcdefghijklmnopqrstuvwxyz"
 d = enchant.Dict("en_US") # english dictionary to check for real words
+toPrint = [] # threads cannot write to files
 
 def decrypt(indexes):
     #try each key in thread partition
@@ -50,7 +52,9 @@ def decrypt(indexes):
                 isreal = False
         #print final message
         if isreal == True:
-            print(f'Key #{index}: {decrypted}')
+            toPrint.append(index)
+            toPrint.append(decrypted)
+            return toPrint
 
 def chunkstring(string, length):
     return (string[0+i:length+i] for i in range(0, len(string), length))          
@@ -58,7 +62,10 @@ def chunkstring(string, length):
 a = numpy.arange(26)
 a = numpy.array_split(a, 4)
 
-print(a)
-
 pool = mp.Pool(processes=4)
-pool.map(decrypt, a)
+toPrint = pool.map(decrypt, a)
+
+# get rid of none for functions that did not return anything
+toPrint = list(filter(None, toPrint))
+
+o.write(f"Key #{toPrint[0][0]}\n\n {toPrint[0][1]}")
