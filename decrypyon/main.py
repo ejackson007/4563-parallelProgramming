@@ -2,6 +2,7 @@ import multiprocessing as mp
 import os
 import numpy
 import enchant
+import time
 
 f = open("hiddenMeaning.txt", 'r')
 o = open("decoded.txt", 'w')
@@ -40,7 +41,7 @@ def decrypt(indexes):
                 if pointer < 0:
                     pointer = pointer + 26
                 
-                # append decryped character
+                # append decryped characterß
                 decrypted = decrypted + alphaLow[pointer]
             #if special character, like puncuation or space
             else:
@@ -54,18 +55,22 @@ def decrypt(indexes):
         if isreal == True:
             toPrint.append(index)
             toPrint.append(decrypted)
-            return toPrint
+            return toPrint      
 
-def chunkstring(string, length):
-    return (string[0+i:length+i] for i in range(0, len(string), length))          
+print("How many threads would you like to test? Enter an integer 1-26")
+threads = int(input())
 
 a = numpy.arange(26)
-a = numpy.array_split(a, 4)
+a = numpy.array_split(a, threads)
 
-pool = mp.Pool(processes=4)
+pool = mp.Pool(processes=threads)
+
+startTime = time.time()
 toPrint = pool.map(decrypt, a)
+executionTime = time.time() - startTime
 
 # get rid of none for functions that did not return anything
 toPrint = list(filter(None, toPrint))
 
-o.write(f"Key #{toPrint[0][0]}\n\n {toPrint[0][1]}")
+o.write(f"Key #{toPrint[0][0]}\nThread Count {threads}\nExecution Time: {executionTime} seconds\n\n{toPrint[0][1]}")
+print(f"Execution completed in {executionTime} seconds")
